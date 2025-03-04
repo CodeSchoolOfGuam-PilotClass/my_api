@@ -5,14 +5,14 @@ class ProductsController < ApplicationController
   end
 
   def show
-    product = Product.find(2)
+    product = Product.find(params[:id])
     render json: product
   end
 
   def create
-    product = Product.create(name: "phone", price: 50)
-    # product = Product.new(name: "phone", price: 50)
-    # product.save
+    # product = Product.create(name: "phone", price: 50)
+    product = Product.new(name: params[:name], price: params[:price])
+    product.save
     render json: product
   end
 
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product = Product.find(2)
+    product = Product.find(params[:id])
     product.destroy
     render :no_content
   end
